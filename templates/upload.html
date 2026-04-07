@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Upload CSV Data</h2>
+<p>Expected columns: name, roll_number, class, section, subject, marks</p>
+<form method="post" enctype="multipart/form-data" class="col-md-6">
+  <input type="file" name="csv_file" accept=".csv" class="form-control mb-3" required>
+  <button class="btn btn-primary">Upload</button>
+</form>
+{% endblock %}

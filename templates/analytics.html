@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Performance Analytics</h2>
+<div class="row g-4 mt-1">
+  <div class="col-lg-6"><div class="card"><div class="card-body"><h5>Subject-wise Performance</h5><canvas id="subjectChart"></canvas></div></div></div>
+  <div class="col-lg-6"><div class="card"><div class="card-body"><h5>Class Comparison</h5><canvas id="classChart"></canvas></div></div></div>
+  <div class="col-lg-6"><div class="card"><div class="card-body"><h5>Grade Distribution</h5><canvas id="gradeChart"></canvas></div></div></div>
+  <div class="col-lg-6"><div class="card"><div class="card-body"><h5>Student Average Progress</h5><canvas id="avgLineChart"></canvas></div></div></div>
+</div>
+<div class="mt-4" id="insights"></div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+{% endblock %}

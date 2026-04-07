@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<div class="row g-3 mt-2">
+  <div class="col-md-3"><div class="card kpi"><div class="card-body"><h6>Total Students</h6><h3>{{ kpi.total_students }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card kpi"><div class="card-body"><h6>Marks Records</h6><h3>{{ kpi.total_marks_records }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card kpi"><div class="card-body"><h6>Overall Average</h6><h3>{{ kpi.overall_average }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card kpi"><div class="card-body"><h6>Highest Mark</h6><h3>{{ kpi.highest_mark }}</h3></div></div></div>
+</div>
+<div class="mt-4">
+  <a href="{{ url_for('analytics') }}" class="btn btn-primary">Open Analytics</a>
+</div>
+{% endblock %}
