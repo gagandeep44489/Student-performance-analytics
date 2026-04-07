@@ -1,0 +1,45 @@
+async function loadAnalytics() {
+  const res = await fetch('/analytics', { headers: { Accept: 'application/json' } });
+  const data = await res.json();
+
+  new Chart(document.getElementById('subjectChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(data.subject_performance),
+      datasets: [{ label: 'Avg Marks', data: Object.values(data.subject_performance) }]
+    }
+  });
+
+  new Chart(document.getElementById('classChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(data.class_comparison),
+      datasets: [{ label: 'Class Avg', data: Object.values(data.class_comparison) }]
+    }
+  });
+
+  new Chart(document.getElementById('gradeChart'), {
+    type: 'pie',
+    data: {
+      labels: Object.keys(data.grade_distribution),
+      datasets: [{ data: Object.values(data.grade_distribution) }]
+    }
+  });
+
+  new Chart(document.getElementById('avgLineChart'), {
+    type: 'line',
+    data: {
+      labels: data.student_averages.map(x => x.name),
+      datasets: [{ label: 'Student Average', data: data.student_averages.map(x => x.average) }]
+    }
+  });
+
+  document.getElementById('insights').innerHTML = `
+    <h4>Insights</h4>
+    <p><strong>Top performers:</strong> ${data.insights.top_performers.map(x => `${x.name} (${x.average})`).join(', ') || 'N/A'}</p>
+    <p><strong>Weak students:</strong> ${data.insights.weak_students.map(x => `${x.name} (${x.average})`).join(', ') || 'N/A'}</p>
+    <p><strong>Improvement trends:</strong> ${data.insights.improvement_trends}</p>
+  `;
+}
+
+loadAnalytics();
